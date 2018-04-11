@@ -35,17 +35,18 @@ def mine():
 
 def main():
     global ALPHA
-    iterations = 2000000
+    iterations = 1000000
     alpha_min = 0.0
     alpha_max = 0.51
-    for _ in range(20):
+    for _ in range(30):
         ALPHA = (alpha_min + alpha_max) / 2.0
         avg_blocks = sum(mine() for _ in xrange(iterations)) / float(iterations)
-        print ALPHA, avg_blocks
+        print "alpha={:.3%}, advantage={:.4f}".format(ALPHA, avg_blocks)
         if avg_blocks > 0.0:
-            alpha_max = ALPHA
+            alpha_max = (ALPHA + alpha_max) / 2.0
         else:
-            alpha_min = ALPHA
+            alpha_min = (ALPHA + alpha_min) / 2.0
+    print "My guess is that alpha needs to be > {:.3%}".format(ALPHA)
 
 
 if __name__ == '__main__':
