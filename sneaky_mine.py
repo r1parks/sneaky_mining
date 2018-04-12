@@ -24,8 +24,7 @@ def event2():
 
 
 def mine():
-    n = random.random()
-    if n <= 0.1:  # event3
+    if random.random() <= 0.9:  # event3
         return 0.0  # sneaky miner got zero advantage
     if sneaky_miner_gets_the_next_block():
         return event1()
@@ -35,8 +34,8 @@ def mine():
 
 def main():
     global ALPHA
-    iterations = 3000000
-    alpha_min = 0.3
+    iterations = 10000000
+    alpha_min = 0.0
     alpha_max = 0.51
     while alpha_max - alpha_min >= 0.0001:
         ALPHA = (alpha_min + alpha_max) / 2.0
