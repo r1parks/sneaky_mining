@@ -35,10 +35,10 @@ def mine():
 
 def main():
     global ALPHA
-    iterations = 1000000
-    alpha_min = 0.0
+    iterations = 3000000
+    alpha_min = 0.3
     alpha_max = 0.51
-    for _ in range(30):
+    while alpha_max - alpha_min >= 0.0001:
         ALPHA = (alpha_min + alpha_max) / 2.0
         advantage = sum(mine() for _ in xrange(iterations)) / float(iterations)
         print "alpha={:.3%}, advantage={:.4f}".format(ALPHA, advantage)
